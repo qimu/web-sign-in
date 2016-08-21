@@ -1,6 +1,12 @@
+
 The MIT License (MIT)
 
 Copyright (c) 2015 RisingStack
+=======
+MIT License
+
+Copyright (c) 2016 Qi Mu
+>>>>>>> 9c8b0bf00d1b43b02172dce962848725318a3a59
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -19,4 +25,3 @@ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
 LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
-
