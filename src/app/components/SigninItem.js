@@ -7,7 +7,7 @@ class SigninItem extends React.Component {
 		var date = dateObj.getDate();
 		var year = dateObj.getFullYear();
 		var month = dateObj.getMonth();
-		var dateStr = `${month}-${date}-${year}`;
+		var dateStr = `${month+1}-${date}-${year}`;
 		return (
 			<li className="signinItem">
 				{this.props.name} - {this.props.email} - {dateStr}
