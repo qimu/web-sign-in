@@ -21,7 +21,6 @@ app.get('/', (req, res) => {
   res.sendFile(path.resolve(__dirname, '../client/index.html'));
 });
 
-
 // APIs
 
 var SIGNINS_FILE = path.join(__dirname, 'signins.json');
