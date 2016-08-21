@@ -1,6 +1,7 @@
 
 # web-sign-in
 a online sign-in form that replace traditional paper sign-in form at a event  
+made for Temple of Enlightenment, NY
 buildt on react-way-getting-started
 
 
@@ -17,6 +18,3 @@ npm start
 Run:  
 `npm run webpack-watch`
 
-## Demo
-
-https://web-sign-in-form.herokuapp.com/
