@@ -18,3 +18,7 @@ npm start
 Run:  
 `npm run webpack-watch`
 
+## todo
+
+Able to choose which kind of activty the current signin is for
+list signins by activity

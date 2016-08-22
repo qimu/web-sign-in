@@ -48,7 +48,9 @@ class AppRoot extends React.Component {
 			dataType: 'json',
 			type: 'POST',
 			data: signin,
-			success: function (signins) {
+			success: function (signin) {
+				var signins = this.state.data;
+				signins.push(signin);
 				this.setState({data: signins});
 			}.bind(this),
 			error: function (xhr, status, err) {

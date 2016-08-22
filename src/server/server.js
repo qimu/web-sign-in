@@ -2,7 +2,27 @@ import path from 'path';
 import Express from 'express';
 import fs from 'fs';
 import bodyParser from 'body-parser';
+import Promise from 'bluebird';
+var mongourl = process.env["MONGODB_URI"];
+var db;
 
+// mongodb
+var MongoClient = require('mongodb').MongoClient,
+  co = require('co'),
+  assert = require('assert');
+
+// connect to the mongodb server
+co(function*() {
+  // Use connect method to connect to the Server
+  db = yield MongoClient.connect(mongourl);
+
+  // Close the connection
+  //db.close();
+}).catch(function(err) {
+  console.log(err.stack);
+});
+
+// configure express
 var app = Express();
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: true}));
@@ -16,14 +36,11 @@ const PATH_DIST = path.resolve(__dirname, '../../dist');
 app.use('/styles', Express.static(PATH_STYLES));
 app.use(Express.static(PATH_DIST));
 
-
 app.get('/', (req, res) => {
   res.sendFile(path.resolve(__dirname, '../client/index.html'));
 });
 
 // APIs
-
-var SIGNINS_FILE = path.join(__dirname, 'signins.json');
 
 // Additional middleware which will set headers that we need on each request.
 app.use(function(req, res, next) {
@@ -37,46 +54,34 @@ app.use(function(req, res, next) {
 });
 
 app.get('/api/signins', function(req, res) {
-  fs.readFile(SIGNINS_FILE, function(err, data) {
-    if (err) {
-      console.error(err);
-      process.exit(1);
-    }
-    res.json(JSON.parse(data));
-  });
+	Promise.coroutine(function *() {
+		try {
+			var docs = yield db.collection('signins').find().toArray();
+			res.json(docs);
+		} catch (err) {
+			res.status(404).send({error:"Error", err});
+		}
+	})();
 });
 
 app.post('/api/signins', function(req, res) {
-  fs.readFile(SIGNINS_FILE, function(err, data) {
-    if (err) {
-      console.error(err);
-      process.exit(1);
-    }
-    var signins = JSON.parse(data);
-    // NOTE: In a real implementation, we would likely rely on a database or
-    // some other approach (e.g. UUIDs) to ensure a globally unique id. We'll
-    // treat Date.now() as unique-enough for our purposes.
-    var newSignin = {
-      date: Date.now(),
-      name: req.body.name,
-      email: req.body.email
-    };
-    signins.push(newSignin);
-    fs.writeFile(SIGNINS_FILE, JSON.stringify(signins, null, 4), function(err) {
-      if (err) {
-        console.error(err);
-        process.exit(1);
-      }
-      res.json(signins);
-    });
-  });
+	Promise.coroutine(function *() {
+		try {
+			var newSignin = {
+				date: Date.now(),
+				name: req.body.name,
+				email: req.body.email
+			};
+			yield db.collection('signins').insertOne(newSignin);
+			res.json(newSignin);
+		} catch (err) {
+			res.status(404).send({error:"Error", err});
+		}
+	})();
 });
-
-
 
 
 server = app.listen(process.env.PORT || 3000, () => {
   var port = server.address().port;
-
   console.log('Server is listening at %s', port);
 });

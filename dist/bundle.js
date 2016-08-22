@@ -22729,19 +22729,19 @@
 
 	var _reactAddons2 = _interopRequireDefault(_reactAddons);
 
-	var _SigninForm = __webpack_require__(245);
+	var _SigninForm = __webpack_require__(177);
 
 	var _SigninForm2 = _interopRequireDefault(_SigninForm);
 
-	var _SigninList = __webpack_require__(244);
+	var _SigninList = __webpack_require__(178);
 
 	var _SigninList2 = _interopRequireDefault(_SigninList);
 
-	var _jquery = __webpack_require__(181);
+	var _jquery = __webpack_require__(180);
 
 	var _jquery2 = _interopRequireDefault(_jquery);
 
-	var _configApp = __webpack_require__(180);
+	var _configApp = __webpack_require__(181);
 
 	var _configApp2 = _interopRequireDefault(_configApp);
 
@@ -22802,7 +22802,9 @@
 					dataType: 'json',
 					type: 'POST',
 					data: signin,
-					success: (function (signins) {
+					success: (function (signin) {
+						var signins = this.state.data;
+						signins.push(signin);
 						this.setState({ data: signins });
 					}).bind(this),
 					error: function error(xhr, status, err) {
@@ -22823,21 +22825,215 @@
 	module.exports = exports['default'];
 
 /***/ },
-/* 177 */,
-/* 178 */,
-/* 179 */,
-/* 180 */
-/***/ function(module, exports) {
+/* 177 */
+/***/ function(module, exports, __webpack_require__) {
 
-	var config = {};
+	"use strict";
 
-	config.title = 'My React App';
+	Object.defineProperty(exports, "__esModule", {
+		value: true
+	});
 
-	module.exports = config;
+	var _createClass = (function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })();
 
+	var _get = function get(_x, _x2, _x3) { var _again = true; _function: while (_again) { var object = _x, property = _x2, receiver = _x3; _again = false; if (object === null) object = Function.prototype; var desc = Object.getOwnPropertyDescriptor(object, property); if (desc === undefined) { var parent = Object.getPrototypeOf(object); if (parent === null) { return undefined; } else { _x = parent; _x2 = property; _x3 = receiver; _again = true; desc = parent = undefined; continue _function; } } else if ("value" in desc) { return desc.value; } else { var getter = desc.get; if (getter === undefined) { return undefined; } return getter.call(receiver); } } };
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
+
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+	var _reactAddons = __webpack_require__(3);
+
+	var _reactAddons2 = _interopRequireDefault(_reactAddons);
+
+	var SigninForm = (function (_React$Component) {
+		_inherits(SigninForm, _React$Component);
+
+		function SigninForm() {
+			_classCallCheck(this, SigninForm);
+
+			_get(Object.getPrototypeOf(SigninForm.prototype), "constructor", this).call(this);
+			this.state = { name: "", email: "" };
+		}
+
+		_createClass(SigninForm, [{
+			key: "handleNameChange",
+			value: function handleNameChange(e) {
+				this.setState({ name: e.target.value });
+			}
+		}, {
+			key: "handleEmailChange",
+			value: function handleEmailChange(e) {
+				this.setState({ email: e.target.value });
+			}
+		}, {
+			key: "handleSubmit",
+			value: function handleSubmit(e) {
+				e.preventDefault();
+				var name = this.state.name.trim();
+				var email = this.state.email.trim();
+				if (!name || !email) {
+					return;
+				}
+				this.props.onSigninSubmit({ name: name, email: email });
+				this.setState({ name: '', email: '' });
+			}
+		}, {
+			key: "render",
+			value: function render() {
+				return _reactAddons2["default"].createElement(
+					"div",
+					{ className: "signinForm", onSubmit: this.handleSubmit.bind(this) },
+					_reactAddons2["default"].createElement(
+						"form",
+						null,
+						_reactAddons2["default"].createElement("input", {
+							type: "text",
+							placeholder: "Your name",
+							value: this.state.name,
+							onChange: this.handleNameChange.bind(this)
+						}),
+						_reactAddons2["default"].createElement("input", {
+							type: "text",
+							placeholder: "Your email",
+							value: this.state.email,
+							onChange: this.handleEmailChange.bind(this)
+						}),
+						_reactAddons2["default"].createElement("input", {
+							type: "submit",
+							value: "Done"
+						})
+					)
+				);
+			}
+		}]);
+
+		return SigninForm;
+	})(_reactAddons2["default"].Component);
+
+	exports["default"] = SigninForm;
+	module.exports = exports["default"];
 
 /***/ },
-/* 181 */
+/* 178 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, '__esModule', {
+		value: true
+	});
+
+	var _createClass = (function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ('value' in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })();
+
+	var _get = function get(_x, _x2, _x3) { var _again = true; _function: while (_again) { var object = _x, property = _x2, receiver = _x3; _again = false; if (object === null) object = Function.prototype; var desc = Object.getOwnPropertyDescriptor(object, property); if (desc === undefined) { var parent = Object.getPrototypeOf(object); if (parent === null) { return undefined; } else { _x = parent; _x2 = property; _x3 = receiver; _again = true; desc = parent = undefined; continue _function; } } else if ('value' in desc) { return desc.value; } else { var getter = desc.get; if (getter === undefined) { return undefined; } return getter.call(receiver); } } };
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
+
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError('Cannot call a class as a function'); } }
+
+	function _inherits(subClass, superClass) { if (typeof superClass !== 'function' && superClass !== null) { throw new TypeError('Super expression must either be null or a function, not ' + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+	var _reactAddons = __webpack_require__(3);
+
+	var _reactAddons2 = _interopRequireDefault(_reactAddons);
+
+	var _SigninItem = __webpack_require__(179);
+
+	var _SigninItem2 = _interopRequireDefault(_SigninItem);
+
+	var SigninList = (function (_React$Component) {
+		_inherits(SigninList, _React$Component);
+
+		function SigninList() {
+			_classCallCheck(this, SigninList);
+
+			_get(Object.getPrototypeOf(SigninList.prototype), 'constructor', this).apply(this, arguments);
+		}
+
+		_createClass(SigninList, [{
+			key: 'render',
+			value: function render() {
+				var signNodes = this.props.data.map(function (signin) {
+					return _reactAddons2['default'].createElement(_SigninItem2['default'], { key: signin.date, date: signin.date, name: signin.name, email: signin.email });
+				});
+				return _reactAddons2['default'].createElement(
+					'div',
+					{ className: 'signinList' },
+					signNodes
+				);
+			}
+		}]);
+
+		return SigninList;
+	})(_reactAddons2['default'].Component);
+
+	exports['default'] = SigninList;
+	module.exports = exports['default'];
+
+/***/ },
+/* 179 */
+/***/ function(module, exports, __webpack_require__) {
+
+	"use strict";
+
+	Object.defineProperty(exports, "__esModule", {
+		value: true
+	});
+
+	var _createClass = (function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })();
+
+	var _get = function get(_x, _x2, _x3) { var _again = true; _function: while (_again) { var object = _x, property = _x2, receiver = _x3; _again = false; if (object === null) object = Function.prototype; var desc = Object.getOwnPropertyDescriptor(object, property); if (desc === undefined) { var parent = Object.getPrototypeOf(object); if (parent === null) { return undefined; } else { _x = parent; _x2 = property; _x3 = receiver; _again = true; desc = parent = undefined; continue _function; } } else if ("value" in desc) { return desc.value; } else { var getter = desc.get; if (getter === undefined) { return undefined; } return getter.call(receiver); } } };
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
+
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+	var _reactAddons = __webpack_require__(3);
+
+	var _reactAddons2 = _interopRequireDefault(_reactAddons);
+
+	var SigninItem = (function (_React$Component) {
+		_inherits(SigninItem, _React$Component);
+
+		function SigninItem() {
+			_classCallCheck(this, SigninItem);
+
+			_get(Object.getPrototypeOf(SigninItem.prototype), "constructor", this).apply(this, arguments);
+		}
+
+		_createClass(SigninItem, [{
+			key: "render",
+			value: function render() {
+				var dateObj = new Date(this.props.date);
+				var date = dateObj.getDate();
+				var year = dateObj.getFullYear();
+				var month = dateObj.getMonth();
+				var dateStr = month + 1 + "-" + date + "-" + year;
+				return _reactAddons2["default"].createElement(
+					"li",
+					{ className: "signinItem" },
+					this.props.name,
+					" - ",
+					this.props.email,
+					" - ",
+					dateStr
+				);
+			}
+		}]);
+
+		return SigninItem;
+	})(_reactAddons2["default"].Component);
+
+	exports["default"] = SigninItem;
+	module.exports = exports["default"];
+
+/***/ },
+/* 180 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/*eslint-disable no-unused-vars*/
@@ -32917,273 +33113,15 @@
 
 
 /***/ },
-/* 182 */,
-/* 183 */,
-/* 184 */,
-/* 185 */,
-/* 186 */,
-/* 187 */,
-/* 188 */,
-/* 189 */,
-/* 190 */,
-/* 191 */,
-/* 192 */,
-/* 193 */,
-/* 194 */,
-/* 195 */,
-/* 196 */,
-/* 197 */,
-/* 198 */,
-/* 199 */,
-/* 200 */,
-/* 201 */,
-/* 202 */,
-/* 203 */,
-/* 204 */,
-/* 205 */,
-/* 206 */,
-/* 207 */,
-/* 208 */,
-/* 209 */,
-/* 210 */,
-/* 211 */,
-/* 212 */,
-/* 213 */,
-/* 214 */,
-/* 215 */,
-/* 216 */,
-/* 217 */,
-/* 218 */,
-/* 219 */,
-/* 220 */,
-/* 221 */,
-/* 222 */,
-/* 223 */,
-/* 224 */,
-/* 225 */,
-/* 226 */,
-/* 227 */,
-/* 228 */,
-/* 229 */,
-/* 230 */,
-/* 231 */,
-/* 232 */,
-/* 233 */,
-/* 234 */,
-/* 235 */,
-/* 236 */,
-/* 237 */,
-/* 238 */,
-/* 239 */,
-/* 240 */,
-/* 241 */,
-/* 242 */,
-/* 243 */
-/***/ function(module, exports, __webpack_require__) {
+/* 181 */
+/***/ function(module, exports) {
 
-	"use strict";
+	var config = {};
 
-	Object.defineProperty(exports, "__esModule", {
-		value: true
-	});
+	config.title = 'My React App';
 
-	var _createClass = (function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })();
+	module.exports = config;
 
-	var _get = function get(_x, _x2, _x3) { var _again = true; _function: while (_again) { var object = _x, property = _x2, receiver = _x3; _again = false; if (object === null) object = Function.prototype; var desc = Object.getOwnPropertyDescriptor(object, property); if (desc === undefined) { var parent = Object.getPrototypeOf(object); if (parent === null) { return undefined; } else { _x = parent; _x2 = property; _x3 = receiver; _again = true; desc = parent = undefined; continue _function; } } else if ("value" in desc) { return desc.value; } else { var getter = desc.get; if (getter === undefined) { return undefined; } return getter.call(receiver); } } };
-
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
-
-	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-
-	var _reactAddons = __webpack_require__(3);
-
-	var _reactAddons2 = _interopRequireDefault(_reactAddons);
-
-	var SigninItem = (function (_React$Component) {
-		_inherits(SigninItem, _React$Component);
-
-		function SigninItem() {
-			_classCallCheck(this, SigninItem);
-
-			_get(Object.getPrototypeOf(SigninItem.prototype), "constructor", this).apply(this, arguments);
-		}
-
-		_createClass(SigninItem, [{
-			key: "render",
-			value: function render() {
-				var dateObj = new Date(this.props.date);
-				var date = dateObj.getDate();
-				var year = dateObj.getFullYear();
-				var month = dateObj.getMonth();
-				var dateStr = month + "-" + date + "-" + year;
-				return _reactAddons2["default"].createElement(
-					"li",
-					{ className: "signinItem" },
-					this.props.name,
-					" - ",
-					this.props.email,
-					" - ",
-					dateStr
-				);
-			}
-		}]);
-
-		return SigninItem;
-	})(_reactAddons2["default"].Component);
-
-	exports["default"] = SigninItem;
-	module.exports = exports["default"];
-
-/***/ },
-/* 244 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-
-	Object.defineProperty(exports, '__esModule', {
-		value: true
-	});
-
-	var _createClass = (function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ('value' in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })();
-
-	var _get = function get(_x, _x2, _x3) { var _again = true; _function: while (_again) { var object = _x, property = _x2, receiver = _x3; _again = false; if (object === null) object = Function.prototype; var desc = Object.getOwnPropertyDescriptor(object, property); if (desc === undefined) { var parent = Object.getPrototypeOf(object); if (parent === null) { return undefined; } else { _x = parent; _x2 = property; _x3 = receiver; _again = true; desc = parent = undefined; continue _function; } } else if ('value' in desc) { return desc.value; } else { var getter = desc.get; if (getter === undefined) { return undefined; } return getter.call(receiver); } } };
-
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
-
-	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError('Cannot call a class as a function'); } }
-
-	function _inherits(subClass, superClass) { if (typeof superClass !== 'function' && superClass !== null) { throw new TypeError('Super expression must either be null or a function, not ' + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-
-	var _reactAddons = __webpack_require__(3);
-
-	var _reactAddons2 = _interopRequireDefault(_reactAddons);
-
-	var _SigninItem = __webpack_require__(243);
-
-	var _SigninItem2 = _interopRequireDefault(_SigninItem);
-
-	var SigninList = (function (_React$Component) {
-		_inherits(SigninList, _React$Component);
-
-		function SigninList() {
-			_classCallCheck(this, SigninList);
-
-			_get(Object.getPrototypeOf(SigninList.prototype), 'constructor', this).apply(this, arguments);
-		}
-
-		_createClass(SigninList, [{
-			key: 'render',
-			value: function render() {
-				var signNodes = this.props.data.map(function (signin) {
-					return _reactAddons2['default'].createElement(_SigninItem2['default'], { key: signin.date, date: signin.date, name: signin.name, email: signin.email });
-				});
-				return _reactAddons2['default'].createElement(
-					'div',
-					{ className: 'signinList' },
-					signNodes
-				);
-			}
-		}]);
-
-		return SigninList;
-	})(_reactAddons2['default'].Component);
-
-	exports['default'] = SigninList;
-	module.exports = exports['default'];
-
-/***/ },
-/* 245 */
-/***/ function(module, exports, __webpack_require__) {
-
-	"use strict";
-
-	Object.defineProperty(exports, "__esModule", {
-		value: true
-	});
-
-	var _createClass = (function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })();
-
-	var _get = function get(_x, _x2, _x3) { var _again = true; _function: while (_again) { var object = _x, property = _x2, receiver = _x3; _again = false; if (object === null) object = Function.prototype; var desc = Object.getOwnPropertyDescriptor(object, property); if (desc === undefined) { var parent = Object.getPrototypeOf(object); if (parent === null) { return undefined; } else { _x = parent; _x2 = property; _x3 = receiver; _again = true; desc = parent = undefined; continue _function; } } else if ("value" in desc) { return desc.value; } else { var getter = desc.get; if (getter === undefined) { return undefined; } return getter.call(receiver); } } };
-
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
-
-	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-
-	var _reactAddons = __webpack_require__(3);
-
-	var _reactAddons2 = _interopRequireDefault(_reactAddons);
-
-	var SigninForm = (function (_React$Component) {
-		_inherits(SigninForm, _React$Component);
-
-		function SigninForm() {
-			_classCallCheck(this, SigninForm);
-
-			_get(Object.getPrototypeOf(SigninForm.prototype), "constructor", this).call(this);
-			this.state = { name: "", email: "" };
-		}
-
-		_createClass(SigninForm, [{
-			key: "handleNameChange",
-			value: function handleNameChange(e) {
-				this.setState({ name: e.target.value });
-			}
-		}, {
-			key: "handleEmailChange",
-			value: function handleEmailChange(e) {
-				this.setState({ email: e.target.value });
-			}
-		}, {
-			key: "handleSubmit",
-			value: function handleSubmit(e) {
-				e.preventDefault();
-				var name = this.state.name.trim();
-				var email = this.state.email.trim();
-				if (!name || !email) {
-					return;
-				}
-				this.props.onSigninSubmit({ name: name, email: email });
-				this.setState({ name: '', email: '' });
-			}
-		}, {
-			key: "render",
-			value: function render() {
-				return _reactAddons2["default"].createElement(
-					"div",
-					{ className: "signinForm", onSubmit: this.handleSubmit.bind(this) },
-					_reactAddons2["default"].createElement(
-						"form",
-						null,
-						_reactAddons2["default"].createElement("input", {
-							type: "text",
-							placeholder: "Your name",
-							value: this.state.name,
-							onChange: this.handleNameChange.bind(this)
-						}),
-						_reactAddons2["default"].createElement("input", {
-							type: "text",
-							placeholder: "Your email",
-							value: this.state.email,
-							onChange: this.handleEmailChange.bind(this)
-						}),
-						_reactAddons2["default"].createElement("input", {
-							type: "submit",
-							value: "Done"
-						})
-					)
-				);
-			}
-		}]);
-
-		return SigninForm;
-	})(_reactAddons2["default"].Component);
-
-	exports["default"] = SigninForm;
-	module.exports = exports["default"];
 
 /***/ }
 /******/ ]);
