@@ -13,6 +13,8 @@ npm install
 npm start
 ```
 
+It use mongodb and require the MONGODB_URI in the environment variable.
+
 ## How to start code
 
 Run:  
