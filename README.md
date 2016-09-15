@@ -1,7 +1,7 @@
 
 # web-sign-in
 a online sign-in form that replace traditional paper sign-in form at a event  
-made for Temple of Enlightenment, NY
+made for Temple of Enlightenment, NY  
 buildt on react-way-getting-started
 
 ## Demo
@@ -22,8 +22,3 @@ It use mongodb and require the MONGODB_URI in the environment variable.
 
 Run:  
 `npm run webpack-watch`
-
-## todo
-
-Able to choose which kind of activty the current signin is for
-list signins by activity
