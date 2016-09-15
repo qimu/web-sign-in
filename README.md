@@ -4,6 +4,9 @@ a online sign-in form that replace traditional paper sign-in form at a event
 made for Temple of Enlightenment, NY
 buildt on react-way-getting-started
 
+## Demo
+
+https://web-sign-in-form.herokuapp.com/
 
 ## How to start
 
